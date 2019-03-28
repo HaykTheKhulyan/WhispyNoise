@@ -10,13 +10,13 @@ MAP_HEIGHT = 500
 SCALE = 100
 
 # 1 for perlin, 2 for simplex
-NOISE_TYPE = 2
+NOISE_TYPE = 1
 
 def get_noise(x_pos, y_pos, z_pos, x_off, y_off):
     if (NOISE_TYPE == 1):
-        return noise.pnoise3(x_off + (x_pos / MAP_WIDTH * SCALE), y_off + (y_pos / MAP_HEIGHT * SCALE), z_pos)
+        return noise.pnoise3(x_off + (x_pos / MAP_WIDTH * SCALE), y_off + (y_pos / MAP_HEIGHT * SCALE), z_pos) + 1
     elif (NOISE_TYPE == 2):
-        return noise.snoise3(x_off + (x_pos / MAP_WIDTH * SCALE), y_off + (y_pos / MAP_HEIGHT * SCALE), z_pos)
+        return noise.snoise3(x_off + (x_pos / MAP_WIDTH * SCALE), y_off + (y_pos / MAP_HEIGHT * SCALE), z_pos) + 1
 
 if __name__ == "__main__":
     pygame.init()
@@ -29,7 +29,7 @@ if __name__ == "__main__":
     rand_y_offset = random.randint(-100000, 100000)
     
     # outer loop steps through layers in the z direction
-    for z_off in range (0, 10):
+    for z_off in range (0, 100):
         # clears the screen 
         screen.fill(pygame.Color('white'))
 
@@ -50,7 +50,7 @@ if __name__ == "__main__":
         pygame.display.flip()
         
         # small pause, will probably delete for real thing
-        time.sleep(0.5)
+        time.sleep(0.025)
 
     # for testing, to know when the program finished updating
     print("Done")
