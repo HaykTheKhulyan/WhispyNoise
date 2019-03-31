@@ -48,6 +48,23 @@ class Particle:
         self._prev_x_pos = self._x_pos
         self._prev_y_pos = self._y_pos
 
+        if (self._x_pos + self._x_vel < 0):
+            self._x_pos = settings.WINDOW_WIDTH + self._x_pos + self._x_vel
+            self._prev_x_pos = self._x_pos
+
+        elif (self._x_pos + self._x_vel > settings.WINDOW_WIDTH):
+            self._x_pos = self._x_pos + self._x_vel - settings.WINDOW_WIDTH
+            self._prev_x_pos = self._x_pos
+        
+        if (self._y_pos + self._y_vel < 0):
+            self._y_pos = settings.WINDOW_HEIGHT + self._y_pos + self._y_vel
+            self._prev_y_pos = self._y_pos
+
+        elif (self._y_pos + self._y_vel > settings.WINDOW_HEIGHT):
+            self._y_pos = self._y_pos + self._y_vel - settings.WINDOW_HEIGHT
+            self._prev_y_pos = self._y_pos
+
+        
         self._x_pos += int(self._x_vel)
         self._y_pos += int(self._y_vel)
 

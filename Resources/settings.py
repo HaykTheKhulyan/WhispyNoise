@@ -23,7 +23,7 @@ DRAW_VECTORS = False
 DRAW_PARTICLES = True
 
 # affects how the particle move. 0.55 for choppy movements (like on a circuit board), 0.85 for smooth curvy flowing
-VELOCITY_MULTIPLIER = 0.85
+VELOCITY_MULTIPLIER = 0.8
 
 # changes the line thickness
 LINE_THICKNESS = 1
