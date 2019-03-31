@@ -50,3 +50,6 @@ Z_INCREMENT = 0.001
 
 # multiplier for the acceleration values for the particles (think of it like the strength of the wind)
 MAGNITUDE = 1
+
+# multiplier for the noise value (greater value increases variation in vector field, value of 4 is nice and balanced while 1 makes the particles blow mostly to the left)
+NOISE_MULTIPLIER = 4
