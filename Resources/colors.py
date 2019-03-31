@@ -1,6 +1,8 @@
 # black/whites
 BLACK = (0, 0, 0)
+TRANSPARENT_BLACK = (0, 0, 0, 50)
 WHITE = (255, 255, 255)
+TRANSPARENT_BLACK = (255, 255, 255, 100)
 OFF_WHITE = (200, 200, 200)
 
 # greens

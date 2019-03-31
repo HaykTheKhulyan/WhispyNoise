@@ -18,7 +18,7 @@ class Particle:
         self._x_accel = 0
         self._y_accel = 0
         
-        pygame.draw.circle(screen, colors.VERY_LIGHT_BLUE, (self._x_pos, self._y_pos), 5)
+        #pygame.draw.circle(screen, colors.VERY_LIGHT_BLUE, (self._x_pos, self._y_pos), 5)
 
     
     def Update(self, noise_map):
@@ -39,7 +39,7 @@ class Particle:
         self._y_vel *= 0.55
 
     def Draw(self, screen):
-        pygame.draw.line(screen, colors.VERY_LIGHT_BLUE, (self._x_pos, self._y_pos), (self._prev_x_pos, self._prev_y_pos), 2)
+        pygame.draw.line(screen, (0, 0, 0, 100), (self._x_pos, self._y_pos), (self._prev_x_pos, self._prev_y_pos), 2)
 
 
 

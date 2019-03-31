@@ -9,4 +9,4 @@ SCALE = 20
 NOISE_TYPE = 2
 
 # how many particles to render 
-NUM_PARTICLES = 500
+NUM_PARTICLES = 100
