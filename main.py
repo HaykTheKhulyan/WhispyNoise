@@ -49,15 +49,15 @@ if __name__ == "__main__":
         # generates a new slice of the noise map with the new z offset. In the future, maybe generate a 3 dimensional slice at the beginning for faster run times?
         noise_map = [[get_noise(x, y, z_off) for x in range(int(settings.WINDOW_WIDTH / 10))] for y in range(int(settings.WINDOW_HEIGHT / 10))]
         # clears the drawings of the previous frame
-        screen.fill(colors.WHITE)
+        screen.fill(settings.BG_COLOR)
         
         for part in particle_list:
             part.Update(noise_map)
             part.Draw(surface1)
             
         # these loop through the grid and draw the vectors
-        #for col in range(int(WINDOW_WIDTH / 10)):
-            #for row in range(int(WINDOW_HEIGHT / 10)):
+        #for col in range(int(settings.WINDOW_WIDTH / 10)):
+            #for row in range(int(settings.WINDOW_HEIGHT / 10)):
                 # calculates the endpoint of the line based on the noise value at that point
                 #line_endpoint_x = row + math.cos(noise_map[row][col] * math.pi)
                 #line_endpoint_y = col + math.sin(noise_map[row][col] * math.pi)
@@ -69,7 +69,7 @@ if __name__ == "__main__":
         pygame.display.flip()            
         
         # increases the z_off, meaning the next "slice" of the noise map will be taken at a slightly different location
-        z_off += 0.0
+        z_off += settings.Z_INCREMENT
 
         # sets framerate of 60
         clock.tick(60)
