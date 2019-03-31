@@ -39,8 +39,8 @@ class Particle:
     
     def Update(self, noise_map):
         if (self._x_pos > 0 and self._y_pos > 0 and self._x_pos < settings.WINDOW_WIDTH and self._y_pos < settings.WINDOW_HEIGHT):
-            self._x_accel = math.cos(noise_map[int(self._x_pos / 10)][int(self._y_pos / 10)] * math.pi)
-            self._y_accel = math.sin(noise_map[int(self._x_pos / 10)][int(self._y_pos / 10)] * math.pi)
+            self._x_accel = settings.MAGNITUDE * math.cos(noise_map[int(self._x_pos / 10)][int(self._y_pos / 10)] * math.pi * 8)
+            self._y_accel = settings.MAGNITUDE * math.sin(noise_map[int(self._x_pos / 10)][int(self._y_pos / 10)] * math.pi * 8)
         
         self._x_vel += self._x_accel
         self._y_vel += self._y_accel

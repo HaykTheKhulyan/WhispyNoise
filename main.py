@@ -51,19 +51,21 @@ if __name__ == "__main__":
         # clears the drawings of the previous frame
         screen.fill(settings.BG_COLOR)
         
-        for part in particle_list:
-            part.Update(noise_map)
-            part.Draw(surface1)
-            
+        if settings.DRAW_PARTICLES:
+            for part in particle_list:
+                part.Update(noise_map)
+                part.Draw(surface1)
+        
+        if settings.DRAW_VECTORS:
         # these loop through the grid and draw the vectors
-        #for col in range(int(settings.WINDOW_WIDTH / 10)):
-            #for row in range(int(settings.WINDOW_HEIGHT / 10)):
-                # calculates the endpoint of the line based on the noise value at that point
-                #line_endpoint_x = row + math.cos(noise_map[row][col] * math.pi)
-                #line_endpoint_y = col + math.sin(noise_map[row][col] * math.pi)
-                # draws the line on the screen, color black, starting at row/col and ending at the newly calculated endpoint
-                #pygame.draw.line(screen, pygame.Color('black'), (10 * row, 10 * col), (10 * line_endpoint_x, 10 * line_endpoint_y))
-                #pygame.draw.circle(screen, pygame.Color('red'), (10 * row, 10 * col), 1)
+            for col in range(int(settings.WINDOW_WIDTH / 10)):
+                for row in range(int(settings.WINDOW_HEIGHT / 10)):
+                    # calculates the endpoint of the line based on the noise value at that point
+                    line_endpoint_x = row + math.cos(noise_map[row][col] * math.pi)
+                    line_endpoint_y = col + math.sin(noise_map[row][col] * math.pi)
+                    # draws the line on the screen, color black, starting at row/col and ending at the newly calculated endpoint
+                    pygame.draw.line(screen, pygame.Color('black'), (10 * row, 10 * col), (10 * line_endpoint_x, 10 * line_endpoint_y), 2)
+                    pygame.draw.circle(screen, pygame.Color('red'), (10 * row, 10 * col), 1)
         # updates the display
         screen.blit(surface1, (0, 0))   
         pygame.display.flip()            
