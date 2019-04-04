@@ -1,7 +1,7 @@
 import math
 import pygame
 
-from Resources import colors, settings
+from Resources import settings
 
 class Particle:
     

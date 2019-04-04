@@ -3,10 +3,10 @@ import random
 import pygame
 import math
 import time
-import pygame_textinput
 
 from Particle import Particle
-from Resources import colors, settings
+from TextBox import TextBox
+from Resources import settings
 
 RAND_X_OFFSET = random.randint(-100000, 100000)
 RAND_Y_OFFSET = random.randint(-100000, 100000)
@@ -31,15 +31,46 @@ if __name__ == "__main__":
     # used to check if the program was closed
     running = True
 
+    # used to check whether the user clicked "generate" or if they just quit the program
+    generate = True
+
     particle_list = []
     
     for i in range(settings.NUM_PARTICLES):
         particle_list.append(Particle.Particle(random.randint(0, settings.WINDOW_WIDTH), random.randint(0, settings.WINDOW_HEIGHT), surface1))
+    
+    input_box = TextBox.TextBox(50, 50, 100, 100)
+
+    # will open and update the settings screen
+    while (running):
+
+        # checks the events and stops the program from running if the "X" was pressed
+        events = pygame.event.get()
+        for event in events:
+            # user clicked draw
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                running = False
+            if event.type == pygame.QUIT:
+                generate = False
+                running = False
+        
+        screen.fill(settings.BG_COLOR)
+        surface1.fill(settings.BG_COLOR)
+        input_box.Update(events)
+        input_box.Draw(surface1)
+
+
+        
+        screen.blit(surface1, (0, 0))   
+        pygame.display.flip()   
+
+    # Setup screen is now gone, so reset the screen
+    running = True
+    surface1.fill(settings.BG_COLOR)
 
     clock = pygame.time.Clock()
 
-    # outer loop steps through layers in the z direction
-    while (running):
+    while (running and generate):
 
         # checks the events and stops the program from running if the "X" was pressed
         for event in pygame.event.get():
