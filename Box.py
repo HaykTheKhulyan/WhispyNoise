@@ -1,7 +1,10 @@
 import pygame
+
+from Collider import Collider
+
 from Resources import colors
 
-class Box:
+class Box(Collider):
     def __init__(self, x_pos, y_pos, width, height, fill_color=colors.BLACK, border_color=colors.BLACK, border_thickness=0):
         self._x_pos = x_pos
         self._y_pos = y_pos
