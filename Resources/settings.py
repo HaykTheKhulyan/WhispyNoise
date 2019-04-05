@@ -1,8 +1,11 @@
 from Resources import colors
 
 # width/height of the window
-WINDOW_WIDTH = 500
-WINDOW_HEIGHT = 500
+WINDOW_WIDTH = 800
+WINDOW_HEIGHT = 800
+
+# frames per second
+FPS = 60
 
 # the color of the background
 BG_COLOR = colors.WHITE
