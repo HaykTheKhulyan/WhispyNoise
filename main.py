@@ -5,8 +5,9 @@ import math
 import time
 
 from Particle import Particle
+from Button import Button
 from TextBox import TextBox
-from Resources import settings
+from Resources import settings, colors
 
 RAND_X_OFFSET = random.randint(-100000, 100000)
 RAND_Y_OFFSET = random.randint(-100000, 100000)
@@ -34,12 +35,15 @@ if __name__ == "__main__":
     # used to check whether the user clicked "generate" or if they just quit the program
     generate = True
 
+    #my_box = Box(settings.WINDOW_WIDTH - 100, settings.WINDOW_HEIGHT - 100, 50, 50, fill_color=colors.NEON_GREEN, border_color=colors.BLACK, border_thickness=3)
+    button = Button(settings.WINDOW_WIDTH - 100, settings.WINDOW_HEIGHT - 100, 50, 50, "Go", 35, fill_color=colors.NEON_GREEN, border_color=colors.BLACK, border_thickness=3)
+
     particle_list = []
     
     for i in range(settings.NUM_PARTICLES):
         particle_list.append(Particle.Particle(random.randint(0, settings.WINDOW_WIDTH), random.randint(0, settings.WINDOW_HEIGHT), surface1))
     
-    input_box = TextBox.TextBox(50, 50, 100, 100)
+    #input_box = TextBox.TextBox(50, 50, 100, 100)
 
     # will open and update the settings screen
     while (running):
@@ -49,15 +53,20 @@ if __name__ == "__main__":
         for event in events:
             # user clicked draw
             if event.type == pygame.MOUSEBUTTONDOWN:
-                running = False
+                mouse_pos = pygame.mouse.get_pos()
+                if (button.Collide(mouse_pos, button.get_rect())):
+                    running = False
             if event.type == pygame.QUIT:
                 generate = False
                 running = False
         
         screen.fill(settings.BG_COLOR)
         surface1.fill(settings.BG_COLOR)
-        input_box.Update(events)
-        input_box.Draw(surface1)
+        #input_box.Update(events)
+        #input_box.Draw(surface1)
+
+
+        button.Draw(surface1)
 
 
         
@@ -105,6 +114,6 @@ if __name__ == "__main__":
         z_off += settings.Z_INCREMENT
 
         # sets framerate of 60
-        clock.tick(60)
+        clock.tick(settings.FPS)
         
     pygame.quit()
